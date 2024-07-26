@@ -11,7 +11,6 @@ body {
 
 .logo {
     text-align: center;
-    margin-bottom: 20px;
 }
 
 .logo img {
@@ -23,7 +22,6 @@ body {
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
-    padding: 20px;
     box-sizing: border-box;
 }
 
