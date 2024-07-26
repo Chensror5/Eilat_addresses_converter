@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Translation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="logo">
+        <img src="mda_logo.png" alt="Logo">
+    </div>
+    <div class="container">
+        <div class="input-group">
+            <input type="text" id="houseNumber" placeholder="Enter house number" oninput="filterNumbers()">
+            <a id="wazeLink" class="waze-link" target="_blank">
+                <div class="waze-button">
+                    <span>Go now</span>
+                </div>
+            </a>
+        </div>
+        <div id="autocomplete-list" class="autocomplete-items"></div>
+        <div class="address">
+            <p id="addressDisplay"></p>
+        </div>
+    </div>
+    <script src="addresses.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
