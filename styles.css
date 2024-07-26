@@ -16,6 +16,7 @@ body {
 
 .logo img {
     max-width: 200px; /* Adjust the size as needed */
+    border-radius: 100%; /* Make the logo image round */
 }
 
 .container {
@@ -76,10 +77,10 @@ input[type="text"] {
     border-top: none;
     z-index: 99;
     position: absolute;
-    width: 30%;
+    width: 80%;
     max-height: 150px;
     overflow-y: auto;
-    left: 47%;
+    left: 50%;
     transform: translateX(-50%);
 }
 
