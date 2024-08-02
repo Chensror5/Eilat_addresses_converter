@@ -70,6 +70,28 @@ input[type="text"] {
     background-color: #0056b3; /* Darker blue on hover */
 }
 
+.maps-link {
+    margin: 10px 5px;
+    text-decoration: none; /* Remove default link styling */
+}
+
+.maps-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #102431; /* Google Maps blue color */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.maps-button:hover {
+    background-color: #357AE8; /* Darker blue on hover */
+}
+
 .button-icon {
     width: 30px; /* Adjust the size as needed */
     margin-right: 10px;
