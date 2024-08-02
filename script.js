@@ -25,5 +25,5 @@ function filterNumbers() {
 function showAddress(address) {
     document.getElementById('addressDisplay').textContent = `${address.street} ${address.translated}`;
     document.getElementById('wazeLink').href = `https://waze.com/ul?q=${encodeURIComponent(address.street + ' ' + address.translated + ' ' + 'אילת')}&navigate=yes`;
-    document.getElementById('googleMapsLink').href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address.street + ' ' + address.translated)}`;
+    document.getElementById('googleMapsLink').href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address.street + ' ' + address.translated + ' ' + 'אילת')}`;
 }
