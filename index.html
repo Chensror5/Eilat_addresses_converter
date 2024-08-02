@@ -8,14 +8,25 @@
 </head>
 <body>
     <div class="logo">
-        <img src="mda_waze_logo.png" alt="Logo">
+        <img id="organizationLogo" src="" alt="Logo">
     </div>
-    <div class = "explanations">
+    <div id="organizationSelection" class="organization-selection">
+        <label for="organization">Choose an organization:</label>
+        <select id="organization">
+            <option value="mda">מד"א</option>
+            <option value="police">משטרה</option>
+            <!-- Add more organizations as needed -->
+        </select>
+        <button id="saveOrganizationButton" onclick="saveOrganization()">שמור</button>
+    </div>
+    
+    <button id="toggleExplanation">להסבר לחץ כאן</button><!-- Toggle button -->
+    <div id="explanation" class = "explanations" style="display: none">
         <h1>ברוכים הבאים למתרגם הכתובות של אילת</h1>
         <p dir="rtl">
-             כל אילתי יודע שכתובות בעיר זה במספרים, לצערנו 
-             <span dir="ltr">Waze</span>
-             הוא מהגר בעירנו
+            כל אילתי יודע שכתובות בעיר זה במספרים, לצערנו 
+            <span dir="ltr">Waze</span>
+            הוא מהגר בעירנו
             <br>
             <br>
             אבל אל דאגה, יש פתרון
@@ -29,32 +40,91 @@
         </p>
     </div>
     <div class="container">
-        <div class="input-group">
-            <input type="text" id="houseNumber" placeholder="Enter house number" oninput="filterNumbers()">
-            <a id="wazeLink" class="waze-link" target="_blank">
-                <div class="waze-button">
-                    <img src="waze_logo.png" alt="Open in Waze" class="button-icon">
-                    <span>Open in Waze</span>
-                </div>
-            </a>
-            <a id="googleMapsLink" class="google-maps-link" target="_blank">
-                <div class="maps-button">
-                    <img src="google_icon.png" alt="Open in Google Maps" class="button-icon">
-                    <span>Open in Google Maps</span>
-                </div>
-            </a>
-        </div>
-        <div id="autocomplete-list" class="autocomplete-items"></div>
         <div class="address">
             <p id="addressDisplay"></p>
+        </div>
+        <div class="input-container"> <!-- Updated container -->
+            <p class="instruction" dir="rtl">הזן כתובת:</p>
+            <div class="input-group">
+                <input type="text" id="houseNumber" placeholder="Enter house number" oninput="filterNumbers()">
+                <div id="autocomplete-list" class="autocomplete-items"></div>
+                <p class="clik-here-instruction" dir="rtl">לאחר בחירת הכתובת לחץ כאן:</p>
+                <a id="wazeLink" class="waze-link" target="_blank">
+                    <div class="waze-button">
+                        <img src="waze_logo.png" alt="Open in Waze" class="button-icon">
+                        <span>Open in Waze</span>
+                    </div>
+                </a>
+                <a id="googleMapsLink" class="google-maps-link" target="_blank">
+                    <div class="maps-button">
+                        <img src="google_icon.png" alt="Open in Google Maps" class="button-icon">
+                        <span>Open in Google Maps</span>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
     <script src="addresses.js"></script>
     <script src="script.js"></script>
     <div class="copy_rights">
-
+        
         <h5>made by Chen Sror ©</h5>
+        <button id="switchOrganization" class="switch-organization" style="display:none;" onclick="showOrganizationSelection()">Switch Organization</button>
     </div>
+    <script>
+        document.getElementById('toggleExplanation').addEventListener('click', function() {
+            var explanation = document.getElementById('explanation');
+            if (explanation.style.display === 'none') {
+                explanation.style.display = 'block';
+                this.textContent = 'Hide explanation';
+            } else {
+                explanation.style.display = 'none';
+                this.textContent = 'For explanation, click here';
+            }
+        });
 
+        function saveOrganization() {
+            var organization = document.getElementById('organization').value;
+            localStorage.setItem('organization', organization);
+            loadOrganization();
+        }
+
+        function loadOrganization() {
+            var organization = localStorage.getItem('organization');
+            if (organization) {
+                document.getElementById('organizationSelection').style.display = 'none';
+                document.getElementById('switchOrganization').style.display = 'block';
+                var logoSrc;
+                var bodyClass;
+                switch (organization) {
+                    case 'mda':
+                        logoSrc = 'mda_waze_logo.png';
+                        bodyClass = 'mda-theme';
+                        break;
+                    case 'police':
+                        logoSrc = 'eilat_police.png';
+                        bodyClass = 'police-theme';
+                        break;
+                    // Add more cases as needed
+                }
+                document.getElementById('organizationLogo').src = logoSrc;
+                document.body.className = bodyClass;
+            } else {
+                document.getElementById('organizationSelection').style.display = 'block';
+                document.getElementById('switchOrganization').style.display = 'none';
+            }
+        }
+
+        function showOrganizationSelection() {
+            document.getElementById('organizationSelection').style.display = 'block';
+            document.getElementById('switchOrganization').style.display = 'none';
+        }
+
+        // Load organization on page load
+        document.addEventListener('DOMContentLoaded', loadOrganization);
+
+    </script>
+
+    
 </body>
 </html>

@@ -41,3 +41,5 @@ function showFreeText(freeText) {
     document.getElementById('googleMapsLink').href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(freeText)}`;
 }
 
+
+
