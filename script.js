@@ -43,3 +43,61 @@ function showFreeText(freeText) {
 
 
 
+document.getElementById('toggleExplanation').addEventListener('click', function() {
+    var explanation = document.getElementById('explanation');
+    if (explanation.style.display === 'none') {
+        explanation.style.display = 'block';
+        this.textContent = 'הסתר הסבר';
+    } else {
+        explanation.style.display = 'none';
+        this.textContent = 'להסבר, לחץ כאן';
+    }
+});
+
+function saveOrganization() {
+    var organization = document.getElementById('organization').value;
+    if (organization) {
+        localStorage.setItem('organization', organization);
+        loadOrganization();
+    }
+}
+
+function loadOrganization() {
+    var organization = localStorage.getItem('organization');
+    if (organization) {
+        document.getElementById('organizationSelection').style.display = 'none';
+        document.getElementById('switchOrganization').style.display = 'block';
+        var logoSrc;
+        var bodyClass;
+        switch (organization) {
+            case 'mda':
+                logoSrc = 'mda_waze_logo.png';
+                bodyClass = 'mda-theme';
+                break;
+            case 'police':
+                logoSrc = 'eilat_police.png';
+                bodyClass = 'police-theme';
+                break;
+            // Add more cases as needed
+        }
+        document.getElementById('organizationLogo').src = logoSrc;
+        document.getElementById('organizationLogo').style.display = 'block'; // Show the logo
+        document.getElementById('searchContainer').style.display = 'block'; // Show the search container
+        document.body.className = bodyClass;
+    } else {
+        document.getElementById('organizationSelection').style.display = 'block';
+        document.getElementById('switchOrganization').style.display = 'none';
+        document.getElementById('organizationLogo').style.display = 'none';
+        document.getElementById('searchContainer').style.display = 'none'; // Hide the search container
+    }document.getElementById('organizationLogo')
+}
+
+function showOrganizationSelection() {
+    document.getElementById('organizationSelection').style.display = 'block';
+    document.getElementById('switchOrganization').style.display = 'none';
+    document.getElementById('organizationLogo').style.display = 'none';
+    document.getElementById('searchContainer').style.display = 'none'; // Hide the search container when switching organizations
+}
+
+// Load organization on page load
+document.addEventListener('DOMContentLoaded', loadOrganization);
